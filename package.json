@@ -25,6 +25,7 @@
     "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.2.1",
     "@nestjs/platform-express": "^9.0.0",
+    "axios": "^1.2.2",
     "dotenv": "^16.0.3",
     "nodemailer": "^6.8.0",
     "nodemailer-express-handlebars": "^6.0.0",

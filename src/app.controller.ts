@@ -49,9 +49,9 @@ export class AppController {
   
   @Get('send-sms')
   sendSmsOtp() {
-    const otpCode = '153426';
+    const message = 'Your OTP Code to access xxxvideo is : 666999';
     const phoneNumber = '+628562905595';
-    return this.otpService.sendSMS(phoneNumber, otpCode)
+    return this.otpService.sendSMS(phoneNumber, message)
   }
 
 }

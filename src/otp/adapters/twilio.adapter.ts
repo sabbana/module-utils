@@ -5,10 +5,10 @@ export class TwilioAdapter {
   private apiSecret: string;
   private baseUrl: string;
 
-  constructor(apiKey: string, apiSecret: string, baseUrl: string) {
+  constructor(apiKey: string, apiSecret: string) {
     this.apiKey = apiKey;
     this.apiSecret = apiSecret;
-    this.baseUrl = baseUrl;
+    this.baseUrl = `https://api.twilio.com/2010-04-01/Accounts/${this.apiKey}/Messages.json`;
   }
 
   async sendSMS(phoneNumber: string, message: string) {
@@ -19,10 +19,10 @@ export class TwilioAdapter {
       },
     };
 
-    const data = {
-      to: phoneNumber,
-      body: message,
-    };
+    const data = new URLSearchParams({
+      'To': phoneNumber,
+      'Body': message,
+    });
 
     try {
       const response = await axios.post(this.baseUrl, data, config);

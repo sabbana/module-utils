@@ -4,9 +4,9 @@ export class CitcallAdapter {
   private apiKey: string;
   private baseUrl: string;
 
-  constructor(apiKey: string, baseUrl: string) {
+  constructor(apiKey: string) {
     this.apiKey = apiKey;
-    this.baseUrl = baseUrl;
+    this.baseUrl = `https://api.citcall.com/v2/smsotp`;
   }
 
   async sendSMS(phoneNumber: string, message: string) {
