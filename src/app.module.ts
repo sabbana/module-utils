@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ConfigModule  } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { EmailModule } from './email/email.module';
-import { OtpModule } from './otp/otp.module';
+import { SmsModule } from './sms/sms.module';
 
 @Module({
   imports: [
@@ -11,7 +11,7 @@ import { OtpModule } from './otp/otp.module';
       isGlobal: true,
     }),
     EmailModule,
-    OtpModule
+    SmsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

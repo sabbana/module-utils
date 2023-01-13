@@ -1,62 +1,47 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <img src="https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/arrow_loop3.png" width="75">
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-## Module Utils
-Module utils adalah kumpulan module-module yang bersifat reusable untuk dapat digunakan pada module-module lain, spt:
+# Module Utils
+Module utils adalah kumpulan module atau service yang menangani task tertentu dan dapat digunakan pada module atau service lain yang membutuhkan spt:
 - Pengiriman email
 - Pengiriman SMS OTP
 - File Storage dll
 
-## Description
+## Module Mailer
+Module ini bisa kita gunakan untuk keperluan pengiriman email (email relay), baik menggunakan standard protocol SMPT maupun email service provider seperti : mailgun, sendggrid, mailgun, sendinblue maupun mailtrap.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Dengan menggunakan module/service ini kita tinggal melakukan konfigurasi credential pada environment varible project sbb:
 
-## Installation
-
-```bash
-$ yarn install
 ```
-
-## Running the app
-
-```bash
-# development
-$ yarn run start
-
-# watch mode
-$ yarn run start:dev
-
-# production mode
-$ yarn run start:prod
+# PROVIDER SUPPORT [mailtrap, sendinblue, mailgun, sendgrid, and standard smtp protocol]
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USER=
+MAIL_PASS=
+MAIL_FROM=
 ```
+Setelah memasukkan credential pada variable enviroment, langkah selanjutnya kita bisa menggunakan service/module ini dengan meng-inject (DI) pada service atau controller lain yang membutuhkan.
 
-## Test
-
-```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
 ```
+import { Injectable } from '@nestjs/common';
+import { EmailService } from './email/email.service';
 
-## Support
+@Injectable()
+export class AppService {
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+  constructor(private readonly mailService: EmailService) {}
 
-## Stay in touch
+  sendMail(options: any) {
+    return this.mailService.send(options);
+  }
+}
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```
+pada parameter option (object), ada beberapa attribute yang wajib ada antara lain:
+``
+to
+``
 
-## License
-
-Nest is [MIT licensed](LICENSE).
+## Author
+- @bukan_hokage <mailto: sabbana.a7@gmail.com>

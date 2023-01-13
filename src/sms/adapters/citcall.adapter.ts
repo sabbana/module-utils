@@ -13,7 +13,7 @@ export class CitcallAdapter {
     const config = {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `Bearer ${this.apiKey}`,
+        Authorization: `Bearer ${this.apiKey}`,
       },
     };
 

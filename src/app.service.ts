@@ -1,13 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { EmailService } from './email/email.service';
-import { OtpModule } from './otp/otp.module';
+import { SmsService } from './sms/sms.service';
 
 @Injectable()
 export class AppService {
-
   constructor(
     private readonly mailService: EmailService,
-    // private readonly otpService: OtpModule
+    private readonly smsService: SmsService,
   ) {}
 
   getHello(): string {

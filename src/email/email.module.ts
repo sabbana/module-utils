@@ -17,7 +17,7 @@ import { EmailService } from './email.service';
           auth: {
             user: config.get('MAIL_USER'),
             pass: config.get('MAIL_PASS'),
-          }
+          },
         },
         defaults: {
           from: `No Reply ${config.get('MAIL_FROM')}`,
@@ -27,13 +27,13 @@ import { EmailService } from './email.service';
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,
-          }
-        }
+          },
+        },
       }),
-      inject: [ConfigService]
-    })
+      inject: [ConfigService],
+    }),
   ],
   providers: [EmailService],
-  exports: [EmailService]
+  exports: [EmailService],
 })
 export class EmailModule {}
