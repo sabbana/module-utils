@@ -1,30 +1,45 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-12 text-center">
-          <img src="https://images.glints.com/unsafe/glints-dashboard.s3.amazonaws.com/company-logo/db81e59ea6c7c8e0ebb76b812f5594fa.png" alt="Logo">
-          <h1>
-            Selamat Datang di Perusahaan Kami {{ name }}
-          </h1>
-          <p>Terima kasih telah bergabung dengan kami. Kami yakin Anda akan merasa senang bersama kami.</p>
-          <p>Email ini hanya sebagai email template yang digunakan untuk melakukan testing module/library untuk feature pengiriman email pada techstack nestjs</p>
-          <div class="alert alert-info">
-            Template ini menggunakan handler HBS, dan untuk mengirimkan parameter value untuk bisa dibaca oleh template silahkan masukan data pada parameter context
-          </div>
-        </div>
+<head>
+  <title>Advanced Email Template</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="https://via.placeholder.com/300x300" class="img-fluid" alt="Responsive image">
       </div>
-      <div class="row mt-5">
-        <div class="col-12 text-center">
-          <a href="#" class="btn btn-primary">Kunjungi Situs Kami</a>
-        </div>
+      <div class="col-md-6">
+        <h1>Welcome to our website!</h1>
+        <p>We're excited to have you as a new user. To get started, please click the button below to verify your email address.</p>
+        <a href="#" class="btn btn-primary">Verify Email</a>
       </div>
     </div>
-  </body>
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+        <h3>Column 1</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna sit amet aliquam bibendum, magna velit fermentum velit, vel tempor velit metus vel velit.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Column 2</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna sit amet aliquam bibendum, magna velit fermentum velit, vel tempor velit metus vel velit.</p>
+      </div>
+      <div class="col-md-4">
+        <h3>Column 3</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor, magna sit amet aliquam bibendum, magna velit fermentum velit, vel tempor velit metus vel velit.</p>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <p>Copyright © 2022 My Website</p>
+        <p>
+          <a href="#">Unsubscribe</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
 </html>

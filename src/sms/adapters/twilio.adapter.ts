@@ -14,13 +14,14 @@ export class TwilioAdapter {
   }
 
   async sendSMS(phoneNumber: string, message: string) {
+    // set header authentification
     const config = {
       auth: {
         username: this.apiKey,
         password: this.apiSecret,
       },
     };
-
+    // body parameter
     const data = new URLSearchParams({
       To: phoneNumber,
       Body: message,
@@ -29,9 +30,8 @@ export class TwilioAdapter {
 
     try {
       const response = await axios.post(this.baseUrl, data, config);
-      return response;
+      return { status: true, message: response.data };
     } catch (error) {
-      console.log(error);
       throw error;
     }
   }

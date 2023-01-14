@@ -38,10 +38,25 @@ export class AppService {
 }
 
 ```
-pada parameter option (object), ada beberapa attribute yang wajib ada antara lain:
-``
-to
-``
+pada parameter options, ada minimum attribute yang harus ada antara lain:
+```
+{
+  to: <email destination | string or array string[] for multiple recepient>,
+  subject: <email subject | string>,
+  html: <email body bisa berupa plaintext maupun html string>, atau
+  template: <email body menggunakan template file .hbs>
+}
+```
+selain attribute diatas, ada beberapa attribute yang bisa kita gunakan (optional) antara lain:
+```
+{
+  ...
+  cc: <email cc | string or array string>,
+  bcc: <email bcc | string or array string>,
+  context: <object data yang akan dikirim dan dimasukkana ke dalam template>,
+  attachments: <email attachment | list object filename, path>
+}
+```
 
 ## Author
 - @bukan_hokage <mailto: sabbana.a7@gmail.com>

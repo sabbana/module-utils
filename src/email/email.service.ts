@@ -1,6 +1,6 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { SentMessageInfo } from 'nodemailer';
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { existsSync } from 'fs';
 import { join } from 'path';
 
@@ -20,22 +20,25 @@ export class EmailService {
       attachments: options.attachments,
     };
     if (!options.html && !options.template) {
-      throw new Error(
-        'email body is required. You can provide the html option for send the html string or text and template option for using template',
-      );
+      throw new Error(`
+        Email body is required. 
+        You can provide the html option for send the html string or text and template option for using template.
+        Plase provide email template in templates folder in the email module. 
+        For more detail please read the documentation here https://github.com/sabbana/module-utils#readme`);
     }
     if (
       (options.template && options.html) ||
       (options.template && !options.html)
     ) {
       const filePath = join(__dirname, 'templates');
-      const isExists = existsSync(`${filePath}/${options.template}`);
-      console.log(`${filePath}/${options.template}`);
-      if (!isExists)
+      const filename = options.template.split('.')[0];
+      const isExists = existsSync(`${filePath}/${filename}.hbs`);
+      if (!isExists) {
         throw new Error(
-          'Email template path not found. Please provide file template in the template folder',
+          'Email template not found. Please provide template file in the templates folder',
         );
-      params['template'] = options.template;
+      }
+      params['template'] = `${filePath}/${filename}.hbs`;
     }
     if (options.html && !options.template) {
       params['html'] = options.html;
@@ -44,9 +47,14 @@ export class EmailService {
       const res = await this.mailerService.sendMail(params);
       return res;
     } catch (error) {
-      console.log(options);
-      console.error(error);
-      return { status: false };
+      console.log(error);
+      throw new HttpException(
+        {
+          statusCode: error.responseCode,
+          message: error.response,
+        },
+        HttpStatus.BAD_REQUEST,
+      );
     }
   }
 }
