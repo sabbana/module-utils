@@ -6,10 +6,11 @@ import { join } from 'path';
 
 @Injectable()
 export class EmailService {
+
   constructor(private readonly mailerService: MailerService) {}
 
   async send(options: any): Promise<SentMessageInfo> {
-    if (!options.to) throw new Error('Email ``to`` is required');
+    if (!options.to) throw new Error('Email to is required');
     if (!options.subject) throw new Error('email subject is required');
     const params = {
       to: options.to,
@@ -52,6 +53,7 @@ export class EmailService {
         {
           statusCode: error.responseCode,
           message: error.response,
+          error
         },
         HttpStatus.BAD_REQUEST,
       );

@@ -16,4 +16,8 @@ export class AppService {
   sendMail(options: any): Promise<any> {
     return this.mailService.send(options);
   }
+
+  sendSms(phoneNumber: string, message: string) {
+    return this.smsService.sendSMS(phoneNumber, message);
+  }
 }

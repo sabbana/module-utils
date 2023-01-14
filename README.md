@@ -3,15 +3,15 @@
 </p>
 
 # Module Utils
-Module utils adalah kumpulan module atau service yang menangani task tertentu dan dapat digunakan pada module atau service lain yang membutuhkan spt:
-- Pengiriman email
-- Pengiriman SMS OTP
-- File Storage dll
+Module utils are a collection of modules or services that handle certain tasks and can be used in other modules or services that require such as:
+- Sending email
+- Sending SMS/OTP
+- File Storage etc
 
 ## Module Mailer
-Module ini bisa kita gunakan untuk keperluan pengiriman email (email relay), baik menggunakan standard protocol SMPT maupun email service provider seperti : mailgun, sendggrid, mailgun, sendinblue maupun mailtrap.
+We can use this module for sending email (email relay), using both the SMPT standard protocol and email service providers such as: mailgun, sendgrid, mailgun, sendinblue and mailtrap.
 
-Dengan menggunakan module/service ini kita tinggal melakukan konfigurasi credential pada environment varible project sbb:
+By using this module/service, all we have to do is configure the credentials for the project's environment variables as follows:
 
 ```
 # PROVIDER SUPPORT [mailtrap, sendinblue, mailgun, sendgrid, and standard smtp protocol]
@@ -21,7 +21,7 @@ MAIL_USER=
 MAIL_PASS=
 MAIL_FROM=
 ```
-Setelah memasukkan credential pada variable enviroment, langkah selanjutnya kita bisa menggunakan service/module ini dengan meng-inject (DI) pada service atau controller lain yang membutuhkan.
+After defining the credentials in the environment variables, the next step is that we can use this service/module by injecting (DI) it into another service or controller that needs it.
 
 ```
 import { Injectable } from '@nestjs/common';
@@ -38,16 +38,16 @@ export class AppService {
 }
 
 ```
-pada parameter options, ada minimum attribute yang harus ada antara lain:
+in the options parameter, there is a minimum attribute that must be set, including:
 ```
 {
   to: <email destination | string or array string[] for multiple recepient>,
   subject: <email subject | string>,
-  html: <email body bisa berupa plaintext maupun html string>, atau
+  html: <email body bisa berupa plaintext maupun html string>, or
   template: <email body menggunakan template file .hbs>
 }
 ```
-selain attribute diatas, ada beberapa attribute yang bisa kita gunakan (optional) antara lain:
+Besides that, there are several attributes that we can use (optional), including:
 ```
 {
   ...
@@ -57,6 +57,8 @@ selain attribute diatas, ada beberapa attribute yang bisa kita gunakan (optional
   attachments: <email attachment | list object filename, path>
 }
 ```
+
+## SMS Module
 
 ## Author
 - @bukan_hokage <mailto: sabbana.a7@gmail.com>
